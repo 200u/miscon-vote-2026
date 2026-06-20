@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>総合集計 | ミス水戸一2026</title>
+<style>
+:root{--bg:#131314;--text:rgba(248,250,251,.94);--muted:rgba(232,237,240,.62);--line:rgba(255,255,255,.16);--gold:#dcc58d;--sans:"Yu Gothic",system-ui,sans-serif;--serif:"Yu Mincho","Hiragino Mincho ProN",serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 22%,rgba(236,242,245,.12),transparent 34%),radial-gradient(circle at 12% 0,rgba(169,20,45,.08),transparent 32%),linear-gradient(145deg,#1b1b1d,#131314 45%,#08090a);color:var(--text);font-family:var(--sans);padding:24px;font-weight:300}.wrap{max-width:1280px;margin:0 auto}.eyebrow{font-family:var(--serif);font-style:italic;font-size:12px;letter-spacing:.28em;color:var(--gold);display:block;margin-bottom:6px}h1{font-family:var(--serif);font-size:36px;font-weight:300;letter-spacing:.08em;margin:0 0 6px}.sub{color:var(--muted);font-size:13px;letter-spacing:.06em;margin-bottom:22px;line-height:1.8}.layout{display:grid;grid-template-columns:390px 1fr;gap:14px}.card{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045)),rgba(19,19,20,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 46px rgba(0,0,0,.22);backdrop-filter:blur(22px) saturate(1.12);padding:18px;margin-bottom:14px}h2{font-size:13px;font-weight:400;letter-spacing:.16em;margin:0 0 14px;color:var(--muted);text-transform:uppercase}textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:rgba(0,0,0,.28);color:var(--text);padding:11px 12px;font:inherit;margin:6px 0 10px;min-height:96px;font-family:ui-monospace,Consolas,monospace}button{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:10px 15px;background:rgba(255,255,255,.07);color:var(--text);font:inherit;font-size:13px;letter-spacing:.08em;cursor:pointer}.primary{background:linear-gradient(135deg,rgba(126,31,48,.78),rgba(185,74,92,.58));border-color:rgba(185,74,92,.35)}.gold{background:linear-gradient(135deg,rgba(220,197,141,.20),rgba(255,255,255,.06));color:rgba(238,227,191,.94);border-color:rgba(220,197,141,.28)}.danger{border-color:rgba(185,74,92,.42);color:#f0a1ad}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.hint{font-size:12px;color:var(--muted);line-height:1.8}.message{min-height:24px;font-size:13px}.ok{color:#8ee8c4}.bad{color:#f0a1ad}video{width:100%;border-radius:12px;border:1px solid var(--line);background:#000;display:none}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.045);padding:12px}.metric b{display:block;font-family:var(--serif);font-size:32px;font-weight:300}.winner{border-color:rgba(220,197,141,.34);background:linear-gradient(145deg,rgba(220,197,141,.14),rgba(255,255,255,.05)),rgba(19,19,20,.58)}.winner-name{font-family:var(--serif);font-size:42px;letter-spacing:.12em}.chart{margin-top:14px;display:flex;flex-direction:column;gap:9px}.rank-row{display:grid;grid-template-columns:54px 1fr 90px;gap:12px;align-items:center}.rank{width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:10px;display:grid;place-items:center;font-family:var(--serif);font-size:22px;color:var(--muted)}.rank.r1{border-color:rgba(220,197,141,.56);color:rgba(238,227,191,.9)}.bar{height:42px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}.fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,rgba(126,31,48,.58),rgba(185,74,92,.38),rgba(213,189,133,.30))}.candidate{font-family:var(--serif);letter-spacing:.08em;margin-bottom:5px}.votes{text-align:right;font-family:var(--serif);font-size:28px}.perf-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.device{border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(0,0,0,.16);padding:10px;margin-bottom:8px}.missing{color:#f0a1ad;font-weight:500}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tabs button.active{border-color:rgba(220,197,141,.5);color:rgba(238,227,191,.95)}@media(max-width:980px){body{padding:14px}.layout{grid-template-columns:1fr}.summary,.perf-grid{grid-template-columns:1fr}.rank-row{grid-template-columns:44px 1fr 66px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">MISS MITOICHI 2026</span>
+  <h1>総合集計</h1>
+  <div class="sub">このPC画面は各iPadと通信しません。各iPadのadmin.htmlに表示されたQRまたは集計コードを取り込み、公演別と4公演合算を表示します。</div>
+  <div class="layout">
+    <aside>
+      <div class="card">
+        <h2>QR読み取り</h2>
+        <video id="video" playsinline muted></video>
+        <div class="row"><button class="primary" onclick="startScan()">カメラ開始</button><button onclick="stopScan()">停止</button></div>
+        <p class="hint" id="scanHint">BarcodeDetector対応ブラウザならQR読み取りが使えます。使えない場合は手入力してください。</p>
+      </div>
+      <div class="card">
+        <h2>集計コード手入力</h2>
+        <textarea id="manual" placeholder="M26/1/01/12-9-6-10-14-5-8/AB"></textarea>
+        <div class="row"><button class="gold" onclick="importManual()">取り込む</button><button onclick="document.getElementById('manual').value=''">クリア</button></div>
+        <div class="message" id="message"></div>
+      </div>
+      <div class="card">
+        <h2>出力</h2>
+        <div class="row"><button onclick="copyPerformanceTsv()">表示公演TSVコピー</button><button onclick="copyOverallTsv()">総合結果TSVコピー</button><button onclick="copyAllTsv()">4公演まとめTSVコピー</button><button onclick="downloadCsv()">CSV出力</button><button class="danger" onclick="clearAll()">全削除</button></div>
+      </div>
+    </aside>
+    <main>
+      <div class="card winner">
+        <h2>4公演合算 1位</h2>
+        <div class="winner-name" id="winnerName">-</div>
+        <div class="hint" id="winnerVotes">0票</div>
+      </div>
+      <div class="card">
+        <h2>表示する公演</h2>
+        <div class="tabs" id="tabs"></div>
+        <div class="summary"><div class="metric"><span>取り込み端末数</span><b id="deviceCount">0</b></div><div class="metric"><span>未取り込み</span><b id="missingCount">7</b></div><div class="metric"><span>総投票数</span><b id="totalVotes">0</b></div></div>
+        <div class="chart" id="chart"></div>
+      </div>
+      <div class="card">
+        <h2>公演別 取り込み済み / 未取り込み</h2>
+        <div class="perf-grid" id="devices"></div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="shared.js"></script>
+<script>
+let stream=null,timer=null,detector=null,lastCode='',activePerformance='1';
+function msg(text,ok){const el=document.getElementById('message');el.textContent=text;el.className='message '+(ok?'ok':'bad')}
+function importCode(code){try{const p=M26.importAggregateCode(code);lastCode=p.code;msg('公演'+p.performanceId+' / 端末'+p.deviceId+' を取り込みました'+(p.warning?'（警告: '+p.warning+'）':''),!p.warning);activePerformance=p.performanceId;render();return true}catch(e){msg(e.message,false);return false}}
+function importManual(){importCode(document.getElementById('manual').value)}
+async function startScan(){if(!('BarcodeDetector' in window)){document.getElementById('scanHint').textContent='このブラウザはQR読み取りに未対応です。手入力を使ってください。';return}try{detector=detector||new BarcodeDetector({formats:['qr_code']});stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});const video=document.getElementById('video');video.srcObject=stream;video.style.display='block';await video.play();timer=setInterval(async()=>{try{const codes=await detector.detect(video);if(codes[0]&&codes[0].rawValue!==lastCode)importCode(codes[0].rawValue)}catch(_){}},600)}catch(e){document.getElementById('scanHint').textContent='カメラを開始できません。手入力を使ってください。'}}
+function stopScan(){if(timer)clearInterval(timer);timer=null;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}document.getElementById('video').style.display='none'}
+function rankHtml(counts){const ranking=M26.rankingFromCounts(counts),max=Math.max(1,...counts);return ranking.map(c=>`<div class="rank-row"><div class="rank ${c.rank===1?'r1':''}">${c.rank}</div><div><div class="candidate">No.${c.number} ${c.name}</div><div class="bar"><div class="fill" style="width:${c.votes?c.votes/max*100:1}%"></div></div></div><div class="votes">${c.votes}</div></div>`).join('')}
+function render(){const agg=M26.loadAggregate(), overall=M26.aggregateCountsAll(agg), top=M26.rankingFromCounts(overall)[0], counts=M26.aggregateCountsForPerformance(agg,activePerformance), devices=agg.performances[activePerformance].devices, missing=M26.missingDevices(agg,activePerformance);document.getElementById('tabs').innerHTML=M26.PERFORMANCES.map(p=>`<button class="${p===activePerformance?'active':''}" onclick="activePerformance='${p}';render()">公演${p}</button>`).join('');document.getElementById('winnerName').textContent=top&&top.votes?top.name:'-';document.getElementById('winnerVotes').textContent=(top?top.votes:0)+'票';document.getElementById('deviceCount').textContent=Object.keys(devices).length;document.getElementById('missingCount').textContent=missing.length;document.getElementById('totalVotes').textContent=M26.totalVotesFromCounts(counts);document.getElementById('chart').innerHTML=rankHtml(counts);document.getElementById('devices').innerHTML=M26.PERFORMANCES.map(p=>{const ds=agg.performances[p].devices, miss=M26.missingDevices(agg,p);return `<div><h2>公演${p}</h2>${Object.keys(ds).sort().map(id=>`<div class="device"><b>iPad ${id}</b><div class="hint">${M26.totalVotesFromCounts(ds[id].counts)}票 ${ds[id].warning?'<span class="missing">'+ds[id].warning+'</span>':''}</div></div>`).join('')||'<p class="hint">取り込みなし</p>'}<p class="hint missing">未取り込み: ${miss.join(', ')||'なし'}</p></div>`}).join('')}
+function copyPerformanceTsv(){M26.copyText(M26.makePerformanceTsv(M26.loadAggregate(),activePerformance)).then(()=>msg('表示公演TSVをコピーしました',true))}
+function copyOverallTsv(){M26.copyText(M26.makeOverallTsv(M26.loadAggregate())).then(()=>msg('総合結果TSVをコピーしました',true))}
+function copyAllTsv(){M26.copyText(M26.makeAllPerformancesTsv(M26.loadAggregate())).then(()=>msg('4公演まとめTSVをコピーしました',true))}
+function downloadCsv(){M26.downloadText('m26-aggregate.csv',M26.makeAggregateCsv(),'text/csv;charset=utf-8')}
+function clearAll(){if(confirm('PC内の総合集計データをすべて削除します。よろしいですか？')){M26.clearAggregate();render();msg('総合集計データを削除しました',true)}}
+render();
+</script>
+</body>
+</html>

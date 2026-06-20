@@ -1,0 +1,9 @@
+{
+  "name": "ミス水戸一2026 投票",
+  "short_name": "M26 Vote",
+  "start_url": "vote.html",
+  "display": "standalone",
+  "background_color": "#131314",
+  "theme_color": "#131314",
+  "icons": []
+}

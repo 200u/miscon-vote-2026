@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ミス水戸一2026 投票入口</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--text:rgba(248,250,251,.94);--muted:rgba(232,237,240,.62);--line:rgba(255,255,255,.16);--gold:#dcc58d;--serif:"Yu Mincho","Hiragino Mincho ProN",serif;--sans:"Yu Gothic",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 25%,rgba(236,242,245,.14),transparent 36%),linear-gradient(145deg,#1b1b1d,#131314 48%,#08090a);color:var(--text);font-family:var(--sans);padding:24px}.panel{width:min(720px,100%);border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.045)),rgba(19,19,20,.62);padding:28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 22px 60px rgba(0,0,0,.28)}.eyebrow{font-family:var(--serif);font-style:italic;font-size:12px;letter-spacing:.28em;color:var(--gold)}h1{font-family:var(--serif);font-size:36px;font-weight:300;letter-spacing:.08em;margin:8px 0 10px}.sub{color:var(--muted);line-height:1.8;font-size:13px}.links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}a{display:block;text-align:center;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.06);padding:18px 12px;letter-spacing:.1em}a b{display:block;font-family:var(--serif);font-size:22px;font-weight:300;margin-bottom:6px}a span{font-size:12px;color:var(--muted)}@media(max-width:680px){.links{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="panel">
+  <div class="eyebrow">MISS MITOICHI 2026</div>
+  <h1>投票端末メニュー</h1>
+  <p class="sub">このiPad単体で動作します。本番中はPC、サーバー、Wi-Fi、インターネットに接続する必要はありません。票はこのiPadのSafari内に保存されます。</p>
+  <div class="links">
+    <a href="vote.html"><b>投票</b><span>観客用画面</span></a>
+    <a href="admin.html"><b>管理</b><span>端末番号・公演・QR</span></a>
+    <a href="result.html"><b>確認</b><span>端末内結果</span></a>
+  </div>
+</main>
+<script>
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>

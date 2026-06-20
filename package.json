@@ -1,0 +1,14 @@
+{
+  "name": "miscon-vote-device-qr",
+  "version": "2.0.0",
+  "private": true,
+  "description": "ミス水戸一2026 端末保存型QR集計投票システム",
+  "main": "setup-server.js",
+  "scripts": {
+    "start": "node setup-server.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>端末管理 | ミス水戸一2026</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--ink:#101112;--bg:#131314;--crimson:#a9142d;--gold:#dcc58d;--text:rgba(248,250,251,.94);--muted:rgba(232,237,240,.62);--line:rgba(255,255,255,.16);--sans:"Yu Gothic",system-ui,sans-serif;--serif:"Yu Mincho","Hiragino Mincho ProN",serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 20%,rgba(236,242,245,.10),transparent 36%),radial-gradient(circle at 12% 0,rgba(169,20,45,.09),transparent 32%),linear-gradient(145deg,#1b1b1d,#131314 45%,#08090a);color:var(--text);font-family:var(--sans);padding:24px;font-weight:300}.wrap{max-width:1180px;margin:0 auto}.eyebrow{font-family:var(--serif);font-style:italic;font-size:12px;letter-spacing:.28em;color:var(--gold);display:block;margin-bottom:6px}h1{font-family:var(--serif);font-size:34px;font-weight:300;letter-spacing:.08em;margin:0 0 6px}.sub{color:var(--muted);font-size:13px;letter-spacing:.06em;margin-bottom:22px;line-height:1.8}.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);gap:14px}.card{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045)),rgba(19,19,20,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 18px 46px rgba(0,0,0,.22);backdrop-filter:blur(22px) saturate(1.12);padding:18px;margin-bottom:14px}h2{font-size:13px;font-weight:400;letter-spacing:.16em;margin:0 0 14px;color:var(--muted);text-transform:uppercase}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}label{font-size:12px;color:var(--muted);letter-spacing:.08em}input,select,textarea{border:1px solid var(--line);border-radius:10px;background:rgba(0,0,0,.28);color:var(--text);padding:11px 12px;font:inherit;margin:6px 0 10px}textarea{width:100%;min-height:88px;resize:vertical;font-family:ui-monospace,Consolas,monospace}button,a.btn{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:10px 15px;background:rgba(255,255,255,.07);color:var(--text);font:inherit;font-size:13px;letter-spacing:.08em;cursor:pointer;text-decoration:none}.primary{background:linear-gradient(135deg,rgba(126,31,48,.78),rgba(185,74,92,.58));border-color:rgba(185,74,92,.35)}.gold{background:linear-gradient(135deg,rgba(220,197,141,.20),rgba(255,255,255,.06));color:rgba(238,227,191,.94);border-color:rgba(220,197,141,.28)}.danger{border-color:rgba(185,74,92,.42);color:#f0a1ad}.status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.055);font-size:12px;color:var(--muted)}.dot{width:7px;height:7px;border-radius:50%;background:#8ee8c4;box-shadow:0 0 10px rgba(142,232,196,.7)}.dot.closed{background:#b64255;box-shadow:0 0 10px rgba(185,74,92,.7)}.candidate{display:grid;grid-template-columns:40px 1fr 70px 108px;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(0,0,0,.16);padding:10px;margin-bottom:8px}.num{color:var(--gold);font-family:var(--serif);font-style:italic}.name{font-family:var(--serif);letter-spacing:.08em}.votes{text-align:right;font-size:22px;font-family:var(--serif)}.mini{display:flex;gap:5px}.mini button{padding:7px 10px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.045);padding:12px}.metric b{display:block;font-family:var(--serif);font-size:28px;font-weight:300}.qr-wrap{display:grid;place-items:center;background:#fff;border-radius:12px;padding:14px;margin-bottom:12px}#qr{width:260px;height:260px;max-width:100%}.hint{font-size:12px;color:var(--muted);line-height:1.8}.code{font-family:ui-monospace,Consolas,monospace;font-size:16px;letter-spacing:.04em;word-break:break-all}.nav{margin-top:10px}.nav a{margin-right:8px}@media(max-width:880px){body{padding:14px}.layout{grid-template-columns:1fr}.summary{grid-template-columns:1fr}.candidate{grid-template-columns:34px 1fr 58px}.mini{grid-column:2/4}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">MISS MITOICHI 2026</span>
+  <h1>端末管理</h1>
+  <div class="sub">この画面はiPad単体で動作します。本番中にPC、サーバー、Wi-Fi、インターネットへ接続する必要はありません。票はこのiPadのlocalStorageに保存されます。</div>
+  <div class="layout">
+    <main>
+      <div class="card">
+        <h2>端末・公演設定</h2>
+        <div class="row">
+          <label>端末番号</label><input id="deviceId" style="width:100px" inputmode="numeric" placeholder="01">
+          <label>公演番号</label><select id="performanceId"><option value="1">1回目</option><option value="2">2回目</option><option value="3">3回目</option><option value="4">4回目</option></select>
+          <button class="primary" onclick="saveSettings()">保存</button>
+          <span class="status"><span class="dot" id="statusDot"></span><span id="statusText"></span></span>
+        </div>
+        <p class="hint">端末番号は01〜07を推奨します。公演番号ごとに票は別保存され、混ざりません。</p>
+      </div>
+      <div class="card">
+        <h2>投票操作</h2>
+        <div class="row"><button class="primary" onclick="openVote()">投票開始</button><button class="gold" onclick="closeVote()">投票締切</button><button onclick="undoLast()">直前の投票取消</button><button class="danger" onclick="resetCurrent()">この公演を全リセット</button><button class="danger" onclick="resetAll()">4公演すべて全リセット</button></div>
+        <div class="nav"><a class="btn" href="index.html">入口</a><a class="btn" href="vote.html">投票画面</a><a class="btn" href="result.html">端末結果</a></div>
+      </div>
+      <div class="card">
+        <h2>この端末・この公演の票数</h2>
+        <div class="summary"><div class="metric"><span>端末番号</span><b id="metricDevice">01</b></div><div class="metric"><span>公演番号</span><b id="metricPerf">1</b></div><div class="metric"><span>総投票数</span><b id="metricTotal">0</b></div></div>
+        <div id="candidateList" style="margin-top:14px"></div>
+      </div>
+    </main>
+    <aside>
+      <div class="card">
+        <h2>QR / 集計コード</h2>
+        <div class="qr-wrap"><canvas id="qr"></canvas></div>
+        <textarea id="code" readonly></textarea>
+        <div class="row"><button class="gold" onclick="copyCode()">コードをコピー</button><button onclick="downloadCsv()">CSV出力</button></div>
+        <p class="hint">投票終了後、PCのaggregate.htmlへこのQRまたは集計コードを取り込みます。QRが読めない場合は文字列を手入力できます。</p>
+      </div>
+      <div class="card">
+        <h2>本番前確認</h2>
+        <p class="hint">機内モードでも、この管理画面、投票画面、QR生成が動くことを確認してください。Safariの履歴・Webサイトデータを削除すると票は消えます。</p>
+      </div>
+    </aside>
+  </div>
+</div>
+<script src="shared.js"></script>
+<script src="qrcode-v3.js"></script>
+<script>
+function render(){
+  const s=M26.loadState(), perf=M26.currentPerformance(s), code=M26.generateCode(s);
+  document.getElementById('deviceId').value=s.deviceId;
+  document.getElementById('performanceId').value=s.performanceId;
+  document.getElementById('statusDot').className='dot'+(perf.votingOpen?'':' closed');
+  document.getElementById('statusText').textContent='公演'+s.performanceId+' '+(perf.votingOpen?'投票受付中':'投票締切');
+  document.getElementById('metricDevice').textContent=s.deviceId;
+  document.getElementById('metricPerf').textContent=s.performanceId;
+  document.getElementById('metricTotal').textContent=M26.totalVotes(s);
+  document.getElementById('candidateList').innerHTML=M26.CANDIDATES.map((c,i)=>`<div class="candidate"><div class="num">No.${c.number}</div><div class="name">${c.name}</div><div class="votes">${perf.counts[i]}票</div><div class="mini"><button onclick="adjust(${c.id},1)">+1</button><button onclick="adjust(${c.id},-1)">-1</button></div></div>`).join('');
+  document.getElementById('code').value=code;
+  QRCodeV3.draw(document.getElementById('qr'),code);
+}
+function saveSettings(){M26.setDeviceId(document.getElementById('deviceId').value);M26.setPerformanceId(document.getElementById('performanceId').value);render()}
+function openVote(){M26.setVotingOpen(true);render()}
+function closeVote(){M26.setVotingOpen(false);render()}
+function undoLast(){try{M26.undoLastVote();render()}catch(e){alert(e.message)}}
+function adjust(id,delta){M26.adjustVote(id,delta);render()}
+function resetCurrent(){if(confirm('現在選択中の公演の票を0に戻します。よろしいですか？')){M26.resetCurrentPerformance();render()}}
+function resetAll(){if(confirm('4公演すべての票を0に戻します。よろしいですか？')){M26.resetAllPerformances();render()}}
+function copyCode(){M26.copyText(document.getElementById('code').value)}
+function downloadCsv(){const s=M26.loadState();M26.downloadText('m26-device-p'+s.performanceId+'-'+s.deviceId+'.csv',M26.makeDeviceCsv(),'text/csv;charset=utf-8')}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+render();
+</script>
+</body>
+</html>
